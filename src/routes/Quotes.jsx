@@ -1,47 +1,40 @@
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import Post from "../components/Root";
+import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import MAgicQuote from "../components/MagicQuote";
-import { loader } from "../components/MagicQuote";
 import UserQuote from "../components/UserQuote";
-import { Route } from 'react-router-dom'
 import "../App.css";
-
-{/* <Route path='/:username' render={(props) => <UserQuote username={props.match.params.username} />} /> */ }
 
 function Quote() {
 
   const { username } = useParams();
-  let searchref = useRef("")
-  const [filterquote, setfilterquote] = useState([])
-  const navigate = useNavigate();
+  let searchRef = useRef("")
+  const [filteredQuote, setfilteredQuote] = useState([])
   const handlesearch = (e) => {
-    if (searchref.current.value !== "") {
-      let storedquotes = JSON.parse(localStorage.getItem(username)) || []
-      let filteredquotes = storedquotes.filter(element => element.toLowerCase().includes(searchref.current.value.toLowerCase()))
-      setfilterquote(filteredquotes)
+    if (searchRef.current.value !== "") {
+      let storedQuotes = JSON.parse(localStorage.getItem(username)) || []
+      let filteredQuotes = storedQuotes.filter(element => element.toLowerCase().includes(searchRef.current.value.toLowerCase()))
+      setfilteredQuote(filteredQuotes)
     }
-  }
-  const handlelogout = () => {
-    navigate("/")
   }
 
   return (
-    < div className="quotes-mainbox" >
-      {/* <button className="logout-button" onClick={handlelogout}> LogOut </button>s */}
+    <div className="quotes-mainbox" >
       <div className="magic-quote">
-        <h1 style={{ marginBottom: "100px" }}> Magic Quote </h1>
         <MAgicQuote />
       </div>
       <div className="user-quote">
-        <UserQuote username={username} handle={handlesearch} />
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <UserQuote username={username} />
+        <div className="userquote-container">
           <div className="user-quotesearch">
-            <input type="text" ref={searchref} className="userquote-input" placeholder="Search your Quotes" />
-            <button className="search-button" type="Search" onClick={handlesearch}> Search Quote</button>
+            <input
+              type="text"
+              ref={searchRef}
+              className="userquote-input"
+              placeholder="Search your Quotes" />
+            <button className="search-button" onClick={handlesearch}> Search </button>
           </div>
           <ul className="stored-quotes">
-            {filterquote.map((element, index) => {
+            {filteredQuote.map((element, index) => {
               return (
                 <li key={index}>{element}</li>
               )

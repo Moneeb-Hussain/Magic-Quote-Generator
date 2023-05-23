@@ -1,6 +1,4 @@
-import { Navigate, Outlet, useLoaderData, useOutletContext } from "react-router-dom";
-import Post from "../components/Root";
-import { useState } from "react";
+import { Navigate, Outlet, useOutletContext } from "react-router-dom";
 
 function ProtectedRuote() {
   const [auth, setauth] = useOutletContext()

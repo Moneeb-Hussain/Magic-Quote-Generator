@@ -1,10 +1,6 @@
-import { useLoaderData, useNavigate, useParams, Link, useOutletContext } from "react-router-dom";
-import Post from "../components/Root";
-import { useEffect, useRef, useState } from "react";
+import { useNavigate, Link, useOutletContext } from "react-router-dom";
+import { useEffect } from "react";
 import MAgicQuote from "../components/MagicQuote";
-import { loader } from "../components/MagicQuote";
-import UserQuote from "../components/UserQuote";
-import { Route } from 'react-router-dom'
 import "../App.css";
 
 function Home() {
@@ -12,14 +8,19 @@ function Home() {
   const [auth, setauth] = useOutletContext()
   useEffect(() => {
     setauth(false)
-    console.log(auth)
+    //eslint-disable-next-line react-hooks/exhaustive deps
   }, [])
   return (
-    <div className="Quote-Box">
-      <h1 style={{ marginBottom: "100px", fontSize: "37px" }}> Magic Quote Generator</h1>
-      <MAgicQuote />
-      <Link className="Link" to="/SignUp">Sign Up and get started by making your own Quotes </Link>
-    </div >
+    <div className="home-container">
+      <h1 className="heading-magicquote"> Magic Quote Generator</h1>
+      < div className="Quote-Box" >
+        <MAgicQuote />
+        <span>
+          {<Link className="Link" to="/SignUp"> Sign Up </Link>}
+          and get started by making your own Quotes
+        </span>
+      </div>
+    </div>
   );
 }
 export default Home;
