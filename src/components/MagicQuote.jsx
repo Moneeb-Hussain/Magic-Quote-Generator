@@ -1,5 +1,4 @@
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import Post from "./Root";
+import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import "../App.css";
 
@@ -13,21 +12,35 @@ function MAgicQuote() {
         setquotes(quote[randomnum])
     }
     return (
-        <>
-            {quotes ? <p className="quotes-paragraph"> {quotes.text}</p> : <p className="quotes-paragraph">{quote[2].text}</p>}
-            {quotes ? <p className="quotes-paragraph" > -{quotes.author ? quotes.author : "Anonymous"} </p > : <p className="quotes-paragraph" style={{ textAlign: "right" }} > -{quote[2].author} </p >}
+        <div className="quote-container">
+            {quote[1] && (quotes
+                ? <p className="quotes-paragraph"> {quotes.text}</p>
+                : <p className="quotes-paragraph">{quote[2].text}</p>)}
+            {quote[1] && (quotes
+                ? <p className="quotes-author" > <em> -{quotes.author ? quotes.author : "Anonymous"}  </em></p >
+                : <p className="quotes-author"> <em> -{quote[2].author} </em> </p >
+            )}
+            {quote.message && <p className="error-fetch"> Failed to Fetch Data </p>}
             <button className="button" onClick={handlechange}> Generate Quote </button>
-        </>
+        </div>
     )
 }
 export default MAgicQuote
 
 export async function loader() {
-    try {
-        const res = await fetch(POSTS_URL);
-        const quote = await res.json();
-        return quote;
-    } catch (error) {
-        console.log(error);
+    let getQuotes = JSON.parse(localStorage.getItem("magicQuotes"))
+    if (!getQuotes) {
+        try {
+            const res = await fetch(POSTS_URL);
+            const quote = await res.json();
+            localStorage.setItem("magicQuotes", JSON.stringify(quote))
+            return quote
+        }
+        catch (error) {
+            return error;
+        }
+    }
+    else {
+        return getQuotes;
     }
 }

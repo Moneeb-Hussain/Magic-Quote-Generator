@@ -1,31 +1,54 @@
-import { useEffect, useState } from 'react'
-import Home from '../routes/Home'
+import React, { useEffect, useState } from 'react'
 import '../App.css'
 
 export default function UserQuote(props) {
     const [text, settext] = useState('')
-    let storedquotes = JSON.parse(localStorage.getItem(props.username)) || []
+    const [storedQuotes, setstoredQuotes] = useState([])
+    useEffect(() => {
+        let quotesfromLocalStorage = JSON.parse(localStorage.getItem(props.username)) || []
+        setstoredQuotes(quotesfromLocalStorage)
+    }, [props.username])
+
     const handlesubmit = (e) => {
         e.preventDefault();
-        if (!text == "") {
-            storedquotes.push(text)
-            localStorage.setItem(props.username, JSON.stringify(storedquotes))
+        if (text !== "") {
+            const updatedQuotes = [...storedQuotes, text]
+            localStorage.setItem(props.username, JSON.stringify(updatedQuotes))
+            setstoredQuotes(updatedQuotes)
         }
         settext("")
     }
+    const handledelete = (index) => {
+        const updatedQuotes = [...storedQuotes]
+        updatedQuotes.splice(index, 1)
+        localStorage.setItem(props.username, JSON.stringify(updatedQuotes))
+        setstoredQuotes(updatedQuotes)
+    }
+
     return (
         <>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className='userquote-container'>
                 <form onSubmit={handlesubmit}>
+                    <h1 className='heading-magicquotepage'> {props.username}'s Quotes </h1>
                     <div className='userquote-inputbox'>
-                        <input className='userquote-input' type="text" value={text} onChange={(e) => { settext(e.target.value) }} placeholder='Type your Quotes' />
+                        <input
+                            className='userquote-input'
+                            type="text"
+                            value={text}
+                            onChange={(e) => { settext(e.target.value) }}
+                            placeholder='Type your Quotes' />
                         <button className='quote-button' type="submit" > Add Quote </button>
                     </div>
                 </form>
                 <ul className='stored-quotes'>
-                    {storedquotes.map((element, index) => {
+                    {storedQuotes.map((element, index) => {
                         return (
-                            <li key={index}>{element}</li>
+                            <React.Fragment key={index}>
+                                <div>
+                                    <li>{element}</li>
+                                    <button className='delete-button' onClick={() => handledelete(index)} > Delete </button>
+                                </div>
+                            </React.Fragment>
                         )
                     })}
                 </ul>
