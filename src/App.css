@@ -1,42 +1,433 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.error {
+  color: rgb(255, 12, 12);
+}
+
+.user-quotesearch {
+  display: flex;
+  gap: 7px;
+}
+
+.container {
+  height: 100vh;
+}
+
+.search-button {
+  padding: 11px 7px;
+  width: 18%;
+  height: 34px;
+}
+
+.navbar {
+  display: flex;
+  text-decoration: none;
+  outline: none;
+  justify-content: flex-end;
+  margin: 0px 20px;
+  height: 0vh;
+}
+
+span {
+  font-size: 18px;
+}
+
+.navbar-li {
+  text-decoration: none;
+  color: white;
+  outline: none;
+}
+
+.quotes-paragraph {
+  line-height: 60px;
+  font-size: 19px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.quotes-author {
+  line-height: 60px;
+  font-size: 17px;
+  align-self: flex-end;
+  padding: 5px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+button {
+  background-color: rgb(40, 204, 81);
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+}
+
+.submit-button {
+  padding: 12px 15px;
+  margin: 14px 0px 0px 0px;
+  margin-bottom: 40px;
+}
+
+.quote-button {
+  padding: 10px 8px;
+  margin: 0px 0px 0px 10px;
+  width: 17%;
+  height: 34px;
+}
+
+.delete-button {
+  padding: 6px 5px;
+  margin: 3px 0px 0px 10px;
+  width: 9%;
+  height: 25px;
+  font-size: 11px;
+  background-color: #9dd2eb;
+}
+
+.button:hover {
+  border-color: #646cff;
+}
+
+ul {
+  margin: 18px 0px;
+  text-decoration: none;
+  outline: none;
+}
+
+.error-fetch {
+  color: red;
+  font-size: 17px;
+}
+
+.Link {
+  color: white;
+  font-size: 18px;
+}
+
+.button {
+  padding: 7px 8px;
+  margin: 55px 0px;
+  width: 19%;
+}
+
+.Link-nav {
+  color: white;
+  font-size: 22px;
+  margin: 12px 24px 21px 21px;
+
+}
+
+.stored-quotes {
+  margin-left: 25px;
+}
+
+.home-container {
+  height: 100vh;
+  text-align: center;
+}
+
+.Quote-Box {
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  color: rgb(231, 87, 35);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input {
+  padding-left: 6px;
+  border-radius: 10px;
+  outline: none;
+  width: 185%;
+  height: 31px;
+  border: 1px solid black;
+  align-content: center;
+  outline: none;
+  margin: 5px;
+}
+
+label {
+  font-size: 16px;
+}
+
+li {
+  padding: 4px;
+  font-size: 18px;
+  font-weight: 20px;
+  color: white;
+  text-decoration: none;
+  outline: none;
+  line-height: 35px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.magic-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 45%;
+  height: 100vh;
+}
+
+.user-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 55%;
+  margin-top: 60px;
+}
+
+.quotes-mainbox {
+  display: flex;
+  width: 100%;
+}
+
+.signing-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.heading-magicquote {
+  padding-top: 40px;
+  margin-bottom: 70px;
+  font-size: 37px;
+}
+
+.heading-magicquotepage {
+  font-size: 31px;
+}
+
+.userquote-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.userquote-inputbox {
+  display: flex;
+  margin-top: 25px;
+}
+
+.userquote-input {
+  margin-top: 0px;
+  width: 60%;
+}
+
+body {
+  background-color: rgb(26, 24, 24);
+  color: white;
+
+}
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: 20px 0px 30px 0px;
+  padding: 1rem;
+  background: rgba(145, 163, 170, 0.05);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form {
+  text-align: center;
+}
+
+.heading-signing {
+  margin-bottom: 24px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 680px) {
+
+  .heading-magicquote {
+    margin-bottom: 20px;
+    padding-top: 5px;
+    font-size: 22px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .quotes-paragraph {
+    line-height: 32px;
+    font-size: 13px;
+  }
+
+  .quotes-author {
+    line-height: 32px;
+    font-size: 11px;
+  }
+
+  .quote-container {
+    margin: 62px 0px 30px 0px;
+  }
+
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button {
+    padding: 8px 1px;
+    margin: 25px 0px;
+    font-size: 11px;
+    width: 36%;
+  }
+
+  span,
+  .Link {
+    font-size: 12px;
+  }
+
+  .Link-nav {
+    font-size: 17px;
+    margin: 12px 2px 21px 21px;
+  }
+
+  input {
+    padding-left: 12px;
+    border-radius: 10px;
+    width: 166%;
+    height: 24px;
+    margin: 5px;
+    font-size: 11px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  .heading-signing {
+    margin-bottom: 22px;
+    font-size: 20px;
+  }
+
+  .submit-button {
+    padding: 7px 11px;
+    font-size: 11px;
+  }
+
+  .quotes-mainbox {
+    flex-direction: column;
+  }
+
+  .heading-magicquotepage {
+    font-size: 20px;
+  }
+
+  .quote-button {
+    height: 27px;
+    width: 24%;
+    font-size: 10px;
+    padding: 0px 4px;
+  }
+
+  .search-button {
+    height: 27px;
+    width: 26%;
+    font-size: 10px;
+    padding: 0px 4px;
+  }
+
+  li {
+    padding: 2px 0px 17px 0px;
+    font-size: 12px;
+    line-height: 10px;
+  }
+
+  .delete-button {
+    margin: 3px 0px 13px 10px;
+    width: 16%;
+  }
+
+  .magic-quote {
+    margin-top: 33px;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media only screen and (min-width: 600px) and (max-width: 1350px) {
+
+  input {
+    padding-left: 12px;
+    border-radius: 10px;
+    width: 172%;
+    height: 26px;
+    margin: 5px;
+    font-size: 11px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  .heading-signing {
+    margin-bottom: 22px;
+    font-size: 30px;
+  }
+
+  .userquote-input {
+    height: 31px;
+  }
+
+  .delete-button {
+    margin: 3px 0px 13px 10px;
+    width: 16%;
   }
 }
 
-.card {
-  padding: 2em;
-}
+@media only screen and (min-width: 600px) and (max-width: 980px) {
+  .heading-magicquotepage {
+    font-size: 30px;
+  }
 
-.read-the-docs {
-  color: #888;
+  .quote-button {
+    padding: 8px 5px;
+    font-size: 11px;
+  }
+
+  li {
+    padding: 5px 0px 17px 0px;
+    font-size: 15px;
+    line-height: 14px;
+  }
+
+  .quotes-paragraph {
+    font-size: 17px;
+  }
+
+  .quotes-author {
+    font-size: 15px;
+  }
+
+  .button {
+    padding: 11px 3px;
+    margin: 44px 0px;
+    font-size: 11px;
+    width: 20%;
+  }
 }
